@@ -10,7 +10,7 @@
  */
 
 import { useState } from 'react';
-import { Eye, EyeOff, UserCircle } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import './Login.css';
 
 // Props interface for Login component
@@ -73,57 +73,7 @@ const Login = ({ onLogin }: LoginProps) => {
    * Opens a demo popup to simulate Google Sign-In flow
    * For production: Replace with actual Google Client ID and OAuth flow
    */
-  const handleGoogleLogin = () => {
-    console.log('Google login initiated');
-    
-    // Show confirmation dialog instead of OAuth popup for demo
-    const confirmed = window.confirm(
-      '🔐 Google Sign-In Demo\n\n' +
-      'In production, this will open Google\'s account selection screen.\n\n' +
-      'For now, click OK to simulate signing in with Google.\n\n' +
-      'To enable real Google OAuth:\n' +
-      '1. Get a Client ID from Google Cloud Console\n' +
-      '2. See GOOGLE_OAUTH_SETUP.md for instructions'
-    );
-    
-    if (confirmed) {
-      // Simulate successful Google login
-      console.log('Google login successful (demo mode)');
-      onLogin('google_user', 'google_auth');
-    }
-    
-    /* FOR PRODUCTION: Uncomment this code and add your Google Client ID
-    
-    const googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-    const params = new URLSearchParams({
-      client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
-      redirect_uri: window.location.origin + '/auth/callback',
-      response_type: 'token',
-      scope: 'openid email profile',
-      prompt: 'select_account',
-    });
-    
-    const width = 500;
-    const height = 600;
-    const left = window.screen.width / 2 - width / 2;
-    const top = window.screen.height / 2 - height / 2;
-    
-    const popup = window.open(
-      `${googleAuthUrl}?${params.toString()}`,
-      'Google Sign In',
-      `width=${width},height=${height},left=${left},top=${top}`
-    );
-    
-    const checkPopup = setInterval(() => {
-      if (!popup || popup.closed) {
-        clearInterval(checkPopup);
-        setTimeout(() => {
-          onLogin('google_user', 'google_auth');
-        }, 500);
-      }
-    }, 500);
-    */
-  };
+  
 
   /**
    * Toggle create account modal
